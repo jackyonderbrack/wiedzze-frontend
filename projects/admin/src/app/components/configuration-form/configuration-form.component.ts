@@ -28,8 +28,8 @@ export class ConfigurationFormComponent {
         if (this.configurationForm.valid) {
             this.configurationService.addAdmin(this.configurationForm.value).subscribe({
                 next: (response) => {
-                    this.snackBar.open('Nowy administrator został pomyślnie dodany.', 'Zamknij', {
-                        duration: 3000
+                    this.snackBar.open('Nowy administrator został pomyślnie dodany. Przekierowanie', 'Zamknij', {
+                        duration: 1500
                     });
                     this.snackBar._openedSnackBarRef?.afterDismissed().subscribe(() => {
                         this.router.navigate(['/login']);

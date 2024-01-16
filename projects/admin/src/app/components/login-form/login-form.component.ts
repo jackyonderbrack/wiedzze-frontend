@@ -32,8 +32,10 @@ export class LoginFormComponent {
             this.authenticationService.login(loginData).subscribe({
                 next: (response: any) => {
                     this.authenticationService.saveToken(response.token);
-                    this.snackBar.open('Zalogowano pomyślnie', 'Zamknij', { duration: 3000 });
-                    this.router.navigate(['/admin']);
+                    this.snackBar.open('Zalogowano pomyślnie', 'Zamknij', { duration: 1500 });
+                    this.snackBar._openedSnackBarRef?.afterDismissed().subscribe(() => {
+                        this.router.navigate(['/dashboard']);
+                    });
                 },
                 error: (error: any) => {
                     this.snackBar.open('Błąd logowania: ' + error.error.message, 'Zamknij', { duration: 3000 });
