@@ -1,0 +1,28 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>+ Dodaj news</mat-panel-title>
+    </mat-expansion-panel-header>
+    <form
+        [formGroup]="addNewsForm"
+        (ngSubmit)="handleAddNews()"
+        class="flex flex-col my-4"
+    >
+        <mat-form-field>
+            <mat-label>Tytuł</mat-label>
+            <input matInput formControlName="newsTitle" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Opis</mat-label>
+            <input matInput formControlName="newsDescription" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Treść</mat-label>
+            <textarea matInput formControlName="newsContent"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Link do obrazka</mat-label>
+            <input matInput formControlName="newsContent" />
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
+    </form>
+</mat-expansion-panel>
