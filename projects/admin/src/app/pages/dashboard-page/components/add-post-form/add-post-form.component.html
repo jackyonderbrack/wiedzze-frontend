@@ -1,0 +1,18 @@
+<div class="flex flex-col p-2">
+    <h2>Dodaj news</h2>
+    <form [formGroup]="addNewsForm" (ngSubmit)="handleAddNews" class="flex flex-col my-4">
+        <mat-form-field>
+            <mat-label>Tytuł</mat-label>
+            <input matInput formControlName="newsTitle" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Opis</mat-label>
+            <input matInput formControlName="newsDescription" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Treść</mat-label>
+            <textarea matInput formControlName="userPassword"></textarea>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="warn">Dodaj news</button>
+    </form>
+</div>
