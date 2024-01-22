@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="categoryListArray">
+    <!-- Definicje kolumn i komórek tabeli -->
+    <ng-container matColumnDef="categoryName">
+        <th mat-header-cell *matHeaderCellDef>Nazwa Kategorii</th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.categoryName }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoryOptions">
+        <th mat-header-cell *matHeaderCellDef>Opcje</th>
+        <td mat-cell *matCellDef="let element">
+            <!-- <button
+                mat-button
+                color="primary"
+                (click)="handleDeleteCategory(element._id)"
+            >
+                Edytuj
+            </button> -->
+            <button
+                mat-button
+                color="warn"
+                (click)="handleDeleteCategory(element._id)"
+            >
+                Usuń
+            </button>
+        </td>
+    </ng-container>
+
+    <!-- Nagłówek i wiersze tabeli -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
