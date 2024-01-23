@@ -1,8 +1,11 @@
+import { CategoryModel } from './category.model';
+
 export interface NewsModel {
     _id: string;
-    newsCategory: string;
+    newsCategory: CategoryModel;
     newsTitle: string;
     newsDescription?: string;
     newsContent: string;
-    newsImage: string;
+    newsImageUrl: string;
+    createdAt: string;
 }

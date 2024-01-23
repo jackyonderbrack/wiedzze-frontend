@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from 'projects/admin/src/app/services/category/category.service';
 import { NewsService } from 'projects/admin/src/app/services/news/news.service';
 import { CommonModule } from '@angular/common';
+import { NewsModel } from 'projects/admin/src/app/models/news.model';
+import { CategoryModel } from 'projects/admin/src/app/models/category.model';
 
 @Component({
     selector: 'app-news-form',
@@ -34,7 +36,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NewsFormComponent implements OnInit {
     addNewsForm: FormGroup;
-    newsCategories: any[] = [];
+    newsCategories: CategoryModel[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -75,5 +77,4 @@ export class NewsFormComponent implements OnInit {
             });
         }
     }
-    // handleEditNews() {}
 }
