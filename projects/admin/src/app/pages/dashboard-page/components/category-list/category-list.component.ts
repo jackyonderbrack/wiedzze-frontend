@@ -54,4 +54,6 @@ export class CategoryListComponent implements OnInit {
             });
         }
     }
+
+    handleUpdateCategory(id: any) {}
 }

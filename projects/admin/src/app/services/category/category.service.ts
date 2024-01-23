@@ -21,6 +21,13 @@ export class CategoryService {
         );
     }
 
+    updateCategory(updatedCategoryData: any, id: any): Observable<any> {
+        return this.httpClient.post<any>(
+            `${this.baseUrl}/update/${id}`,
+            updatedCategoryData
+        );
+    }
+
     deleteCategory(id: any): Observable<any> {
         return this.httpClient.delete<any>(`${this.baseUrl}/delete/${id}`);
     }
