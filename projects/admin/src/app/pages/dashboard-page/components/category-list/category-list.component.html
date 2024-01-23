@@ -1,33 +1,63 @@
-<table mat-table [dataSource]="categoryListArray">
-    <!-- Definicje kolumn i komórek tabeli -->
-    <ng-container matColumnDef="categoryName">
-        <th mat-header-cell *matHeaderCellDef>Nazwa Kategorii</th>
-        <td mat-cell *matCellDef="let element">
-            {{ element.categoryName }}
-        </td>
-    </ng-container>
-
-    <ng-container matColumnDef="categoryOptions">
-        <th mat-header-cell *matHeaderCellDef>Opcje</th>
-        <td mat-cell *matCellDef="let element">
-            <button
-                mat-button
-                color="primary"
-                (click)="handleUpdateCategory(element._id)"
+<mat-card class="lg:max-w-[60dvw] sm:w-full">
+    <mat-card-header><h2>Lista kategorii</h2> </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item
+                *ngFor="let category of categoryListArray"
+                style="height: 6rem"
             >
-                Edytuj
-            </button>
-            <button
-                mat-button
-                color="warn"
-                (click)="handleDeleteCategory(element._id)"
-            >
-                Usuń
-            </button>
-        </td>
-    </ng-container>
-
-    <!-- Nagłówek i wiersze tabeli -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+                <div class="flex items-center justify-between align-middle">
+                    <div
+                        *ngIf="
+                            selectedCategory?._id !== category._id;
+                            else editCategoryName
+                        "
+                    >
+                        {{ category.categoryName }}
+                    </div>
+                    <ng-template #editCategoryName>
+                        <mat-form-field subscriptSizing="dynamic">
+                            <input
+                                matInput
+                                [(ngModel)]="selectedCategory.categoryName"
+                            />
+                        </mat-form-field>
+                    </ng-template>
+                    <div>
+                        <button
+                            mat-icon-button
+                            (click)="handleUpdateCategory(category)"
+                            *ngIf="
+                                selectedCategory?._id !== category._id;
+                                else editCategoryNameButton
+                            "
+                        >
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <ng-template #editCategoryNameButton>
+                            <button
+                                mat-icon-button
+                                (click)="submitUpdatedCategory()"
+                            >
+                                <mat-icon>check</mat-icon>
+                            </button>
+                            <button
+                                mat-icon-button
+                                (click)="cancelUpdatedCategory()"
+                            >
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </ng-template>
+                        <button
+                            mat-icon-button
+                            color="warn"
+                            (click)="handleDeleteCategory(category._id)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
