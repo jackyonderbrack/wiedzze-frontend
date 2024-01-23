@@ -3,9 +3,9 @@
         <mat-panel-title>+ Dodaj news</mat-panel-title>
     </mat-expansion-panel-header>
     <form
+        class="flex flex-col my-4"
         [formGroup]="addNewsForm"
         (ngSubmit)="handleAddNews()"
-        class="flex flex-col my-4"
     >
         <mat-form-field appearance="fill">
             <mat-label>Wybierz kategorię:</mat-label>
@@ -32,7 +32,7 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Link do obrazka</mat-label>
-            <input matInput formControlName="newsContent" />
+            <input matInput formControlName="newsImageUrl" />
         </mat-form-field>
         <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
     </form>

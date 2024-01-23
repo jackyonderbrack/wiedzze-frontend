@@ -8,7 +8,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -39,7 +39,8 @@ export class NewsFormComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private newsService: NewsService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private snackBar: MatSnackBar
     ) {
         this.addNewsForm = this.formBuilder.group({
             newsCategory: ['', Validators.required],
@@ -56,6 +57,23 @@ export class NewsFormComponent implements OnInit {
         });
     }
 
-    handleAddNews() {}
-    handleEditNews() {}
+    handleAddNews() {
+        if (this.addNewsForm.valid) {
+            this.newsService.createNews(this.addNewsForm.value).subscribe({
+                next: (response) => {
+                    this.snackBar.open('Dodano nowy post', 'Zamknij', {
+                        duration: 1500
+                    });
+                    this.addNewsForm.reset();
+                },
+                error: (error) => {
+                    this.snackBar.open('Nie udało się dodać newsa', 'Zamknij', {
+                        duration: 1500
+                    });
+                    console.log('Wystąpił błąd', error);
+                }
+            });
+        }
+    }
+    // handleEditNews() {}
 }

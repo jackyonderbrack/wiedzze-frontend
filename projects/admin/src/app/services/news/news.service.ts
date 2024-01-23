@@ -7,7 +7,7 @@ import { NewsModel } from '../../models/news.model';
     providedIn: 'root'
 })
 export class NewsService {
-    private baseUrl = 'http://localhost:8080/categories';
+    private baseUrl = 'http://localhost:8080/news';
 
     constructor(private httpClient: HttpClient) {}
 
@@ -15,9 +15,9 @@ export class NewsService {
         return this.httpClient.get(`${this.baseUrl}/get`);
     }
 
-    getSignleNews(id: string): Observable<any> {
-        return this.httpClient.get(`${this.baseUrl}/get/${id}`);
-    }
+    // getSignleNews(id: string): Observable<any> {
+    //     return this.httpClient.get(`${this.baseUrl}/get/${id}`);
+    // }
 
     createNews(newNewsData: NewsModel): Observable<any> {
         return this.httpClient.post<NewsModel>(
