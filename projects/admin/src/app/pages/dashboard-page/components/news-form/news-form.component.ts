@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NewsService } from 'projects/admin/src/app/services/news.service';
+import { NewsService } from 'projects/admin/src/app/services/news/news.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
