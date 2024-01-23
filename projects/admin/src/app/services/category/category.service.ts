@@ -22,7 +22,7 @@ export class CategoryService {
     }
 
     updateCategory(updatedCategoryData: any, id: any): Observable<any> {
-        return this.httpClient.post<any>(
+        return this.httpClient.put<any>(
             `${this.baseUrl}/update/${id}`,
             updatedCategoryData
         );
