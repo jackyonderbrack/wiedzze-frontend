@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { CategoryModel } from 'projects/admin/src/app/models/category.model';
 
 @Component({
     selector: 'app-category-list',
@@ -28,7 +29,7 @@ import { MatCardModule } from '@angular/material/card';
     ]
 })
 export class CategoryListComponent implements OnInit {
-    public categoryListArray: any = [];
+    public categoryListArray: CategoryModel[] = [];
     selectedCategory: any = null;
 
     constructor(
@@ -46,7 +47,7 @@ export class CategoryListComponent implements OnInit {
         });
     }
 
-    handleDeleteCategory(id: any) {
+    handleDeleteCategory(id: string) {
         const confirmation = window.confirm(
             'Czy na pewno chcesz usunąć tę kategorię?'
         );
@@ -69,7 +70,7 @@ export class CategoryListComponent implements OnInit {
         }
     }
 
-    handleUpdateCategory(category: any) {
+    handleUpdateCategory(category: CategoryModel) {
         console.log('Aktualna kategoria do edycji: ', category);
         this.selectedCategory = { ...category };
     }

@@ -52,38 +52,18 @@ export class CategoryFormComponent {
                         });
                         this.categoryAdded.emit(); // Emitowanie eventu
                         this.categoryForm.reset(); // Resetowanie formularza
+                    },
+                    error: (error) => {
+                        this.snackBar.open(
+                            'Nie udało się dodać nowej kateogii',
+                            'Zamknij',
+                            {
+                                duration: 1500
+                            }
+                        );
+                        console.log('Wystąpił błąd', error);
                     }
-                    // ... obsługa błędów
                 });
         }
     }
-
-    // handleAddCategory() {
-    //     if (this.categoryForm.valid) {
-    //         this.categoryService
-    //             .createCategory(this.categoryForm.value)
-    //             .subscribe({
-    //                 next: (response) => {
-    //                     this.snackBar.open('Dodano nową kategorię', 'Zamknij', {
-    //                         duration: 1500
-    //                     });
-    //                     console.log('Nowa kategoria dodana', response);
-    //                     this.snackBar._openedSnackBarRef
-    //                         ?.afterDismissed()
-    //                         .subscribe(() => {});
-    //                     console.log('Nowy użytkownik dodany', response);
-    //                 },
-    //                 error: (error) => {
-    //                     this.snackBar.open(
-    //                         'Nie udało się dodać nowej kateogii',
-    //                         'Zamknij',
-    //                         {
-    //                             duration: 300
-    //                         }
-    //                     );
-    //                     console.log('Wystąpił błąd', error);
-    //                 }
-    //             });
-    //     }
-    // }
 }

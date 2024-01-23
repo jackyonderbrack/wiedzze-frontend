@@ -7,6 +7,17 @@
         (ngSubmit)="handleAddNews()"
         class="flex flex-col my-4"
     >
+        <mat-form-field appearance="fill">
+            <mat-label>Wybierz kategorię:</mat-label>
+            <mat-select formControlName="newsCategory">
+                <mat-option
+                    *ngFor="let category of newsCategories"
+                    [value]="category._id"
+                >
+                    {{ category.categoryName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <mat-form-field>
             <mat-label>Tytuł</mat-label>
             <input matInput formControlName="newsTitle" />
@@ -22,10 +33,6 @@
         <mat-form-field>
             <mat-label>Link do obrazka</mat-label>
             <input matInput formControlName="newsContent" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Kategoria</mat-label>
-            <input matInput formControlName="newsCategory" />
         </mat-form-field>
         <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
     </form>
