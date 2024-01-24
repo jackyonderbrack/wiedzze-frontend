@@ -8,7 +8,6 @@
             <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef>Kategoria</th>
                 <td mat-cell *matCellDef="let news">
-                    {{ news.newsCategory._id | slice : 0 : 7 }}..
                     {{ news.newsCategory.categoryName }}
                 </td>
             </ng-container>
@@ -51,11 +50,13 @@
             <ng-container matColumnDef="image">
                 <th mat-header-cell *matHeaderCellDef>Media</th>
                 <td mat-cell *matCellDef="let news">
-                    <img
-                        src="{{ news.newsImageUrl }}"
-                        alt="News Image"
-                        class="h-10 w-20 rounded-md"
-                    />
+                    <div class="w-16 h-16 rounded-md">
+                        <img
+                            src="{{ news.newsImageUrl }}"
+                            alt="News Image"
+                            class="object-cover w-full h-full rounded-md"
+                        />
+                    </div>
                 </td>
             </ng-container>
 
