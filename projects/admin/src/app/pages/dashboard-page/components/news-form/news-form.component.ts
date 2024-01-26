@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoryService } from 'projects/admin/src/app/services/category/category.service';
 import { NewsService } from 'projects/admin/src/app/services/news/news.service';
 import { CommonModule } from '@angular/common';
-import { NewsModel } from 'projects/admin/src/app/models/news.model';
+// import { NewsModel } from 'projects/admin/src/app/models/news.model';
 import { CategoryModel } from 'projects/admin/src/app/models/category.model';
 
 @Component({
@@ -31,7 +31,7 @@ import { CategoryModel } from 'projects/admin/src/app/models/category.model';
         MatSnackBarModule,
         MatExpansionModule,
         MatSelectModule,
-        CommonModule
+        CommonModule,
     ]
 })
 export class NewsFormComponent implements OnInit {
@@ -42,7 +42,7 @@ export class NewsFormComponent implements OnInit {
         private formBuilder: FormBuilder,
         private newsService: NewsService,
         private categoryService: CategoryService,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
     ) {
         this.addNewsForm = this.formBuilder.group({
             newsCategory: ['', Validators.required],

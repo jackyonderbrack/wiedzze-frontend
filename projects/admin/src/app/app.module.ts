@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashboardPageRoutingModule } from './pages/dashboard-page/dashboard-page-routing.module';
-
 @NgModule({
     declarations: [AppComponent],
     imports: [
