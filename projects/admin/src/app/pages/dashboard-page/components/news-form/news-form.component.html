@@ -28,17 +28,17 @@
             <mat-label>Opis</mat-label>
             <input matInput formControlName="newsDescription" />
         </mat-form-field>
-        <mat-form-field>
-            <mat-label>Treść</mat-label>
-            <textarea matInput formControlName="newsContent"></textarea>
-        </mat-form-field>
-        <mat-form-field>
+
+        <angular-editor formControlName="newsContent" [config]="editorConfig" class="mb-4 p-2 border border-gray-200 rounded-md"></angular-editor>
+        <mat-form-field >
             <mat-label>Link do obrazka</mat-label>
             <input matInput formControlName="newsImageUrl" />
         </mat-form-field>
         <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
     </form>
 </mat-expansion-panel>
+
+
 
 
 

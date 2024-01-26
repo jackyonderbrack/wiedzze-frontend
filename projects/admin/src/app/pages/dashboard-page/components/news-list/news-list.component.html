@@ -38,11 +38,12 @@
                 </td>
             </ng-container>
 
-            <!-- Symbol Column -->
+            <!-- Content Column -->
             <ng-container matColumnDef="content">
                 <th mat-header-cell *matHeaderCellDef>Treść</th>
                 <td mat-cell *matCellDef="let news">
-                    {{ news.newsContent | slice : 0 : 70 }}...
+                    
+                    <div class="text-justify" [innerHTML]="htmlSlice(news.newsContent, 100)"></div><span>(...)</span>
                 </td>
             </ng-container>
 

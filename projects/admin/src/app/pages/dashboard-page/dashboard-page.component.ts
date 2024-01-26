@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
     selector: 'app-dashboard-page',
@@ -20,6 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
     ]
 })
 export class DashboardPageComponent {
+    constructor(
+        private authenticationService: AuthenticationService,
+        private router: Router
+    ) {}
+
     menuItems = [
         { title: 'Newsy', link: '/dashboard/news' },
         { title: 'Kategorie', link: '/dashboard/categories' },
@@ -28,4 +34,9 @@ export class DashboardPageComponent {
         { title: 'Wygląd', link: '/dashboard/theme' },
         { title: 'Konto', link: '/dashboard/account' }
     ];
+
+    handleLogout() {
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
+    }
 }

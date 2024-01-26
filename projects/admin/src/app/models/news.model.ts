@@ -5,7 +5,7 @@ export interface NewsModel {
     newsCategory: CategoryModel;
     newsTitle: string;
     newsDescription?: string;
-    newsContent: string;
+    newsContent: HTMLElement;
     newsImageUrl: string;
     createdAt: string;
 }

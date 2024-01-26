@@ -17,6 +17,8 @@ import { NewsService } from 'projects/admin/src/app/services/news/news.service';
 import { CommonModule } from '@angular/common';
 // import { NewsModel } from 'projects/admin/src/app/models/news.model';
 import { CategoryModel } from 'projects/admin/src/app/models/category.model';
+import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
+
 
 @Component({
     selector: 'app-news-form',
@@ -32,11 +34,52 @@ import { CategoryModel } from 'projects/admin/src/app/models/category.model';
         MatExpansionModule,
         MatSelectModule,
         CommonModule,
+        AngularEditorModule
     ]
 })
 export class NewsFormComponent implements OnInit {
     addNewsForm: FormGroup;
     newsCategories: CategoryModel[] = [];
+
+    editorConfig: AngularEditorConfig = {
+        editable: true,
+          spellcheck: true,
+          height: 'auto',
+          minHeight: '200px',
+          maxHeight: 'auto',
+          width: 'auto',
+          minWidth: '0',
+          translate: 'yes',
+          enableToolbar: true,
+          showToolbar: true,
+          placeholder: 'Konfiguruj swoją treść tutaj...',
+          defaultParagraphSeparator: '',
+          defaultFontName: '',
+          defaultFontSize: '',
+          fonts: [
+            {class: 'arial', name: 'Arial'},
+            {class: 'times-new-roman', name: 'Times New Roman'},
+            {class: 'calibri', name: 'Calibri'},
+            {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+          ],
+          customClasses: [
+          {
+            name: 'quote',
+            class: 'quote',
+          },
+          {
+            name: 'redText',
+            class: 'redText'
+          },
+          {
+            name: 'titleText',
+            class: 'titleText',
+            tag: 'h1',
+          },
+        ],
+        uploadUrl: 'v1/image',
+    };
+   
 
     constructor(
         private formBuilder: FormBuilder,
@@ -50,8 +93,10 @@ export class NewsFormComponent implements OnInit {
             newsDescription: [''],
             newsContent: ['', [Validators.required, Validators.minLength(20)]],
             newsImageUrl: ['', Validators.required]
-        });
+        });  
     }
+
+    
 
     ngOnInit(): void {
         this.categoryService.getCategories().subscribe((data) => {

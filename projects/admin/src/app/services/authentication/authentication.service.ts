@@ -8,28 +8,21 @@ import { Observable, tap } from 'rxjs';
 })
 export class AuthenticationService {
     private apiUrl = 'http://localhost:8080/auth/login';
-    private token: string | undefined;
+    private tokenKey = 'jwt_token';
 
     constructor(private httpClient: HttpClient) {}
 
     saveToken(token: string): void {
-        localStorage.setItem('jwt_token', token);
-        this.token = token;
+        localStorage.setItem(this.tokenKey, token);
     }
 
-    getToken(): string {
-        if (!this.token) {
-            this.token = localStorage.getItem('jwt_token') || '';
-        }
-        return this.token || '';
+    getToken(): string | null {
+        return localStorage.getItem(this.tokenKey);
     }
 
     isTokenValid(): boolean {
         const token = this.getToken();
-        if (token) {
-            return true;
-        }
-        return false;
+        return !!token;
     }
 
     login(loginData: LoginModel): Observable<any> {
@@ -38,5 +31,9 @@ export class AuthenticationService {
                 this.saveToken(response.token);
             })
         );
+    }
+
+    logout(): void {
+        localStorage.removeItem(this.tokenKey);
     }
 }

@@ -71,4 +71,12 @@ export class NewsListComponent implements OnInit {
             });
         }
     }
+
+    htmlSlice(content: string, length: number): string {
+        const strippedContent = content.replace(/<[^>]*>/g, '');
+        if (strippedContent.length > length) {
+            return strippedContent.slice(0, length)
+        }
+        return strippedContent
+    }
 }

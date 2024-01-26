@@ -23,7 +23,15 @@
                         "polyfills": ["zone.js"],
                         "tsConfig": "projects/admin/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": ["projects/admin/src/favicon.ico", "projects/admin/src/assets"],
+                        "assets": [
+                            "projects/admin/src/favicon.ico",
+                            "projects/admin/src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "./node_modules/@kolkov/angular-editor/assets/",
+                                "output": "./assets/fonts/"
+                              }
+                        ],
                         "styles": ["@angular/material/prebuilt-themes/deeppurple-amber.css", "projects/admin/src/styles.scss"],
                         "scripts": []
                     },
