@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-logo',
+  selector: 'app-nav',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss']
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss']
 })
-export class LogoComponent {
+export class NavComponent {
 
 }
