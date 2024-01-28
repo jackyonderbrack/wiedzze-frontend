@@ -1,1 +1,6 @@
-<p>list works!</p>
+<div>
+  <h3>list works</h3>
+  <div class="grid grid-cols-4" *ngFor="let item of newsData">
+    <app-card [data]="item"> </app-card>
+  </div>
+</div>

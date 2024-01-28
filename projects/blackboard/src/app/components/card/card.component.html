@@ -1,1 +1,10 @@
-<p>card works!</p>
+<div class="border border-slate-500 p-4">
+  <h3>Tytuł: {{ data.newsTitle }}</h3>
+  <h5>Data: {{ data.createdAt }}</h5>
+  <p>Opis: {{ data.newsDescription }}</p>
+  <button
+    class="block px-2 py-1 border border-transparent bg-slate-400 hover:bg-slate-200 hover:border-gray-700 hover:border rounded-md min-w-[100px]"
+  >
+    Czytaj
+  </button>
+</div>
