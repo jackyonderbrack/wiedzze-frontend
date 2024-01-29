@@ -1,26 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
-import { NewsService } from 'projects/admin/src/app/services/news/news.service';
+import { Post } from '../../models/post.model';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [CommonModule, CardComponent],
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+    selector: 'app-list',
+    standalone: true,
+    imports: [CommonModule, CardComponent],
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  newsData: any = [];
-  constructor(private newsService: NewsService) {}
+    @Input() posts!: Post[];
 
-  ngOnInit() {
-    this.loadNewsData();
-  }
-
-  loadNewsData() {
-    this.newsService.getAllNews().subscribe((data) => {
-      this.newsData = data;
-    });
-  }
+    ngOnInit(): void {}
 }

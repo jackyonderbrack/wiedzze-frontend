@@ -1,5 +1,7 @@
 <div>
     <div class="grid grid-cols-3 gap-8">
-        <app-card [data]="item" *ngFor="let item of newsData"> </app-card>
+        <ng-container *ngFor="let post of posts">
+            <app-card [data]="post"></app-card>
+        </ng-container>
     </div>
 </div>
