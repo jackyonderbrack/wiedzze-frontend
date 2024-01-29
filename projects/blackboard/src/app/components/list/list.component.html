@@ -1,6 +1,6 @@
 <div>
-  <h3>list works</h3>
-  <div class="grid grid-cols-4" *ngFor="let item of newsData">
-    <app-card [data]="item"> </app-card>
-  </div>
+    <h3>list works</h3>
+    <div class="grid grid-cols-3 gap-8">
+        <app-card [data]="item" *ngFor="let item of newsData"> </app-card>
+    </div>
 </div>
