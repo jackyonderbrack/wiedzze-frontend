@@ -24,7 +24,38 @@ export class UploadComponent {
         const input = event.target as HTMLInputElement;
 
         if (input.files && input.files.length) {
-            this.selectedFile = input.files[0];
+            const file = input.files[0];
+
+            // sprawdzenie rozmiaru pliku dla wszystkich typów
+            if (file.size > 2097152) {
+                this.snackBar.open(
+                    'Przesyłany plik jest za duży, spróbuj mniejszy',
+                    'Zamknij',
+                    { duration: 3000 }
+                );
+                return;
+            }
+
+            // czy to obraz i czy jest szerszy niz 2000px
+            if (file.type.startsWith('image/')) {
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = () => {
+                    if (img.width > 2000) {
+                        this.snackBar.open(
+                            'Wybrany obraz jest za szeroki, spróbuj mniejszy',
+                            'Zamknij',
+                            { duration: 3000 }
+                        );
+                        URL.revokeObjectURL(img.src);
+                        return;
+                    }
+                    this.selectedFile = file; // przypisanie pliku tylko gdy przejdzie walidacje
+                    URL.revokeObjectURL(img.src);
+                };
+            } else {
+                this.selectedFile = file; // przypisanie pliku dla nieobrazów
+            }
         }
     }
 
