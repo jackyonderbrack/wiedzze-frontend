@@ -1,3 +1,6 @@
+<app-section>
+    <app-banner></app-banner>
+</app-section>
 <app-section *ngFor="let category of groupedPosts.keys()">
     <app-title [value]="category"></app-title>
     <app-posts [postsCategory]="category">

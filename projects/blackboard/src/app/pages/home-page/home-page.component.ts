@@ -6,6 +6,7 @@ import { TitleComponent } from '../../components/title/title.component';
 import { PostsComponent } from '../../components/posts/posts.component';
 import { Post } from '../../models/post.model';
 import { NewsService } from 'projects/admin/src/app/services/news/news.service';
+import { BannerComponent } from '../../components/banner/banner.component';
 
 @Component({
     selector: 'app-home-page',
@@ -15,7 +16,8 @@ import { NewsService } from 'projects/admin/src/app/services/news/news.service';
         SectionComponent,
         ListComponent,
         TitleComponent,
-        PostsComponent
+        PostsComponent,
+        BannerComponent
     ],
     templateUrl: './home-page.component.html',
     styleUrls: ['./home-page.component.scss']
