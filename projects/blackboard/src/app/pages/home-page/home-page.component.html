@@ -1,18 +1,6 @@
-<app-section>
-    <app-title value="Książka"></app-title>
-    <app-posts postsCategory="Książka">
-        <app-list></app-list>
-    </app-posts>
-</app-section>
-<app-section>
-    <app-title value="Literatura"></app-title>
-    <app-posts postsCategory="Literatura">
-        <app-list></app-list>
-    </app-posts>
-</app-section>
-<app-section>
-    <app-title value="Rzeczywistość"></app-title>
-    <app-posts postsCategory="Rzeczywistość">
-        <app-list></app-list>
+<app-section *ngFor="let category of groupedPosts.keys()">
+    <app-title [value]="category"></app-title>
+    <app-posts [postsCategory]="category">
+        <app-list *ngFor="let post of groupedPosts.get(category)"></app-list>
     </app-posts>
 </app-section>
