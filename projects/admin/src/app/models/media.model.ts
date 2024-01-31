@@ -1,5 +1,6 @@
 export interface MediaModel {
-    fileName: string;
-    fileType: string;
-    filePath: string;
+  _id: string;
+  fileName: string;
+  fileType: string;
+  filePath: string;
 }

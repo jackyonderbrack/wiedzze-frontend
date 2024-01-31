@@ -1,21 +1,25 @@
 <div class="grid grid-cols-4 gap-8 m-4 mt-8">
-    <div *ngFor="let media of mediaList" class="relative w-full pt-[75%] mb-6">
-        <img
-            [src]="media.filePath"
-            [alt]="media.fileName"
-            class="object-cover absolute top-0 left-0 w-full h-full"
-        />
-        <div class="absolute top-0 left-0 flex gap-4">
-            <div class="bg-white rounded-full mt-2 ml-2 shadow-lg">
-                <button mat-icon-button color="warn">
-                    <mat-icon style="font-size: 30px">delete</mat-icon>
-                </button>
-            </div>
-            <div class="bg-white rounded-full mt-2 shadow-lg">
-                <button mat-icon-button color="primary">
-                    <mat-icon style="font-size: 30px">file_copy</mat-icon>
-                </button>
-            </div>
-        </div>
+  <div *ngFor="let media of mediaList" class="relative w-full pt-[75%] mb-6">
+    <img
+      [src]="media.filePath"
+      [alt]="media.fileName"
+      class="object-cover absolute top-0 left-0 w-full h-full"
+    />
+    <div class="absolute top-0 left-0 flex gap-4">
+      <div class="bg-white rounded-full mt-2 ml-2 shadow-lg">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="handleDeleteFile(media._id)"
+        >
+          <mat-icon style="font-size: 30px">delete</mat-icon>
+        </button>
+      </div>
+      <div class="bg-white rounded-full mt-2 shadow-lg">
+        <button mat-icon-button color="primary">
+          <mat-icon style="font-size: 30px">file_copy</mat-icon>
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -4,14 +4,18 @@ import { Observable } from 'rxjs';
 import { MediaModel } from '../../models/media.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class MediaService {
-    private baseUrl = 'http://localhost:8080/media';
+  private baseUrl = 'http://localhost:8080/media';
 
-    constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-    loadAllMedia(): Observable<MediaModel[]> {
-        return this.httpClient.get<MediaModel[]>(`${this.baseUrl}/get`);
-    }
+  loadAllMedia(): Observable<MediaModel[]> {
+    return this.httpClient.get<MediaModel[]>(`${this.baseUrl}/get`);
+  }
+
+  deleteFile(id: string): Observable<MediaModel> {
+    return this.httpClient.delete<MediaModel>(`${this.baseUrl}/delete/${id}`);
+  }
 }
