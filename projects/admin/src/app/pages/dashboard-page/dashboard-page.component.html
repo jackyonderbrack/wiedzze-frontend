@@ -1,23 +1,29 @@
-<mat-sidenav-container class="min-h-[80dvh]">
-    <mat-sidenav mode="side" opened>
-        <mat-nav-list>
-            <a
-                mat-list-item
-                *ngFor="let item of menuItems"
-                [routerLink]="item.link"
-            >
-                {{ item.title }}
-            </a>    
-        </mat-nav-list>
-        <div class="mt-10">
-            <mat-nav-list >
-                <a mat-list-item (click)="handleLogout()">
-                    <strong>Wyloguj się</strong> 
-                </a>    
-            </mat-nav-list>
-        </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="p-2"><router-outlet></router-outlet></div>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="flex">
+  <section
+    class="w-1/5 border border-slate-600 border-l-0 rounded-l-none rounded-lg mr-1 my-2"
+  >
+    <ul class="flex flex-col">
+      <li
+        *ngFor="let item of menuItems"
+        [routerLink]="item.link"
+        class="text-white hover:bg-slate-400 hover:cursor-pointer hover:text-slate-800 first-of-type:hover:rounded-t-lg p-4 items-center transition-all justify-center"
+      >
+        <a>{{ item.title }}</a>
+      </li>
+    </ul>
+    <div class="mt-10">
+      <ul>
+        <li
+          class="text-white hover:bg-slate-400 hover:cursor-pointer hover:text-slate-800 p-4 items-center transition-all justify-center"
+        >
+          <a (click)="handleLogout()"> Wyloguj się </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section
+    class="w-4/5 border border-slate-600 rounded-lg mx-1 my-2 p-4 min-h-[80dvh]"
+  >
+    <router-outlet></router-outlet>
+  </section>
+</div>

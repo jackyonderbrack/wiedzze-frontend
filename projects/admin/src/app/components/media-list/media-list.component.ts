@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MediaModel } from '../../models/media.model';
 import { MediaService } from '../../services/media/media.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Subscription } from 'rxjs';
+import { MediaUpdateService } from '../../services/media-update/media-update.service';
 
 @Component({
   selector: 'app-media-list',
@@ -13,16 +15,27 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './media-list.component.html',
   styleUrls: ['./media-list.component.scss'],
 })
-export class MediaListComponent implements OnInit {
+export class MediaListComponent implements OnInit, OnDestroy {
+  private subscribtion: Subscription = new Subscription();
   mediaList: MediaModel[] = [];
 
   constructor(
     private mediaService: MediaService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private mediaUpdateService: MediaUpdateService
   ) {}
 
   ngOnInit(): void {
     this.loadMediaList();
+    this.subscribtion.add(
+      this.mediaUpdateService.mediaUpdated$.subscribe(() => {
+        this.loadMediaList();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
   }
 
   loadMediaList(): void {
