@@ -1,44 +1,38 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>+ Dodaj news</mat-panel-title>
+  </mat-expansion-panel-header>
+  <form
+    class="flex flex-col my-4"
+    [formGroup]="addNewsForm"
+    (ngSubmit)="handleAddNews()"
+  >
+    <mat-form-field>
+      <mat-label>Wybierz kategorię:</mat-label>
+      <mat-select formControlName="newsCategory">
+        <mat-option *ngFor="let category of newsCategories" [value]="category">
+          {{ category.categoryName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tytuł</mat-label>
+      <input matInput formControlName="newsTitle" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Opis</mat-label>
+      <input matInput formControlName="newsDescription" />
+    </mat-form-field>
 
-
-    <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-        <mat-panel-title>+ Dodaj news</mat-panel-title>
-    </mat-expansion-panel-header>
-    <form
-        class="flex flex-col my-4"
-        [formGroup]="addNewsForm"
-        (ngSubmit)="handleAddNews()"
-    >
-        <mat-form-field>
-            <mat-label>Wybierz kategorię:</mat-label>
-            <mat-select formControlName="newsCategory">
-                <mat-option
-                    *ngFor="let category of newsCategories"
-                    [value]="category"
-                >
-                    {{ category.categoryName }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Tytuł</mat-label>
-            <input matInput formControlName="newsTitle" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Opis</mat-label>
-            <input matInput formControlName="newsDescription" />
-        </mat-form-field>
-
-        <angular-editor formControlName="newsContent" [config]="editorConfig" class="mb-4 p-2 border border-gray-200 rounded-md"></angular-editor>
-        <mat-form-field >
-            <mat-label>Link do obrazka</mat-label>
-            <input matInput formControlName="newsImageUrl" />
-        </mat-form-field>
-        <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
-    </form>
+    <angular-editor
+      formControlName="newsContent"
+      [config]="editorConfig"
+      class="mb-4 p-2 border border-gray-200 rounded-md"
+    ></angular-editor>
+    <mat-form-field>
+      <mat-label>Link do obrazka</mat-label>
+      <input matInput formControlName="newsImageUrl" />
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
+  </form>
 </mat-expansion-panel>
-
-
-
-
-
