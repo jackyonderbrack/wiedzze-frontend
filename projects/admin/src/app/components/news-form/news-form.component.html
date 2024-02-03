@@ -2,11 +2,7 @@
   <mat-expansion-panel-header>
     <mat-panel-title>+ Dodaj news</mat-panel-title>
   </mat-expansion-panel-header>
-  <form
-    class="flex flex-col my-4"
-    [formGroup]="addNewsForm"
-    (ngSubmit)="handleAddNews()"
-  >
+  <form class="flex flex-col my-4" [formGroup]="addNewsForm" (ngSubmit)="handleAddNews()">
     <mat-form-field>
       <mat-label>Wybierz kategorię:</mat-label>
       <mat-select formControlName="newsCategory">
