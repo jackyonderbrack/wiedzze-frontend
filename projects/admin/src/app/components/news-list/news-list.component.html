@@ -1,80 +1,56 @@
-<mat-card>
-  <mat-card-header>
+<div class="card">
+  <div class="card-header">
     <h2>Lista newsów</h2>
-  </mat-card-header>
-  <mat-card-content>
-    <table mat-table [dataSource]="newsListArray" class="mat-elevation-z8">
-      <!-- Category Column -->
-      <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Kategoria</th>
-        <td mat-cell *matCellDef="let news">
-          {{ news.newsCategory.categoryName }}
-        </td>
-      </ng-container>
-
-      <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Tytuł</th>
-        <td mat-cell *matCellDef="let news">
-          <div class="flex flex-col gap-4">
-            <span>
-              <strong>
-                {{ news.newsTitle }}
-              </strong>
-            </span>
-            <span>
-              Stworzono:
-              {{ news.createdAt | date : "dd/MM/yyr." }}
-            </span>
-          </div>
-        </td>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Opis</th>
-        <td mat-cell *matCellDef="let news">
-          {{ news.newsDescription | slice : 0 : 40 }}...
-        </td>
-      </ng-container>
-
-      <!-- Content Column -->
-      <ng-container matColumnDef="content">
-        <th mat-header-cell *matHeaderCellDef>Treść</th>
-        <td mat-cell *matCellDef="let news">
-          <div
-            class="text-justify"
-            [innerHTML]="htmlSlice(news.newsContent, 100)"
-          ></div>
-          <span>(...)</span>
-        </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef>Media</th>
-        <td mat-cell *matCellDef="let news">
-          <div class="w-16 h-16 rounded-md">
-            <img
-              src="{{ news.newsImageUrl }}"
-              alt="News Image"
-              class="object-cover w-full h-full rounded-md"
-            />
-          </div>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef>Opcje</th>
-        <td mat-cell *matCellDef="let news">
-          <button mat-icon-button (click)="handleDeleteNews(news._id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </div>
+  <div class="card-body">
+    <table>
+      <thead class="border-b border-main">
+        <tr>
+          <th class="text-left">Kategoria</th>
+          <th>Tytuł</th>
+          <th class="hidden lg:table-cell">Opis</th>
+          <th class="hidden xl:table-cell">Treść</th>
+          <th class="hidden lg:table-cell">Media</th>
+          <th>Opcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let news of newsListArray">
+          <td class="align-top justify-start">
+            {{ news.newsCategory.categoryName }}
+          </td>
+          <td>
+            <div class="flex flex-col gap-4">
+              <strong>{{ news.newsTitle }}</strong>
+              <span>Stworzono: {{ news.createdAt | date : "dd/MM/yyr." }}</span>
+            </div>
+          </td>
+          <td class="hidden lg:table-cell">
+            {{ news.newsDescription | slice : 0 : 40 }}...
+          </td>
+          <td class="hidden lg:table-cell">
+            <div
+              class="text-justify"
+              [innerHTML]="htmlSlice(news.newsContent, 100)"
+            ></div>
+            <span>(...)</span>
+          </td>
+          <td class="hidden lg:table-cell">
+            <div class="w-16 h-16 rounded-md">
+              <img
+                src="{{ news.newsImageUrl }}"
+                alt="News Image"
+                class="img-fluid rounded-md"
+              />
+            </div>
+          </td>
+          <td>
+            <button mat-icon-button (click)="handleDeleteNews(news._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>

@@ -6,6 +6,7 @@ module.exports = {
       // dodawanie customowych rzeczy
       colors: {
         transparent: "transparent",
+        main: "rgba(173, 225, 255, 0.185)",
         current: "currentColor",
         white: "#ffffff",
         purple: "#3f3cbb",

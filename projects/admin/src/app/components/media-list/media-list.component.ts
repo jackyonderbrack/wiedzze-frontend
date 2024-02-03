@@ -42,9 +42,6 @@ export class MediaListComponent implements OnInit, OnDestroy {
     this.mediaService.loadAllMedia().subscribe({
       next: (data) => {
         this.mediaList = data;
-        this.snackBar.open('Media załadowano pomyślnie', 'Zamknij', {
-          duration: 3000,
-        });
       },
       error: (error) => {
         console.error(error);
@@ -60,7 +57,7 @@ export class MediaListComponent implements OnInit, OnDestroy {
     if (confirmation) {
       this.mediaService.deleteFile(_id).subscribe({
         next: (data) => {
-          this.snackBar.open('usunięto plik', 'Zamknij', {
+          this.snackBar.open('Usunięto plik', 'Zamknij', {
             duration: 3000,
           });
           this.loadMediaList();
