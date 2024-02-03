@@ -1,17 +1,19 @@
-<div class="grid lg:grid-cols-4 md:grid-cols-1">
-  <section class="card">
-    <mat-card-content>
-      <form
-        class="flex flex-col"
-        (ngSubmit)="handleAddCategory()"
-        [formGroup]="categoryForm"
-      >
-        <mat-form-field>
-          <mat-label>Nowa kategoria</mat-label>
-          <input matInput formControlName="categoryName" />
-        </mat-form-field>
-        <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
-      </form>
-    </mat-card-content>
-  </section>
+<div class="grid lg:grid-cols-2 md:grid-cols-1 gap-4">
+    <section class="card">
+        <mat-card-content>
+            <form
+                class="flex flex-col"
+                (ngSubmit)="handleAddCategory()"
+                [formGroup]="categoryForm"
+            >
+                <mat-form-field>
+                    <mat-label>Nowa kategoria</mat-label>
+                    <input matInput formControlName="categoryName" />
+                </mat-form-field>
+                <button mat-raised-button type="submit" color="warn">
+                    + Dodaj
+                </button>
+            </form>
+        </mat-card-content>
+    </section>
 </div>
