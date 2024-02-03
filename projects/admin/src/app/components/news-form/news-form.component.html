@@ -30,8 +30,18 @@
       class="mb-4 p-2 border border-gray-200 rounded-md"
     ></angular-editor>
     <mat-form-field>
-      <mat-label>Link do obrazka</mat-label>
-      <input matInput formControlName="newsImageUrl" />
+      <mat-label>Wybierz obrazek</mat-label>
+      <mat-select
+        formControlName="newsImageUrl"
+        (click)="handleLoadMedia()"
+        (openedChange)="handleOpenedChange($event)"
+      >
+        <div class="grid grid-cols-3 gap-4">
+          <mat-option *ngFor="let image of mediaImages" [value]="image">
+            <img src="{{ image.filePath }}" alt="{{ image.fileName }}" />
+          </mat-option>
+        </div>
+      </mat-select>
     </mat-form-field>
     <button mat-raised-button type="submit" color="warn">+ Dodaj</button>
   </form>

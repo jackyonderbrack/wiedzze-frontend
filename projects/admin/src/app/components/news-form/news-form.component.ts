@@ -14,12 +14,14 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { CategoryService } from 'projects/admin/src/app/services/category/category.service';
 import { NewsService } from 'projects/admin/src/app/services/news/news.service';
+import { MediaService } from '../../services/media/media.service';
 import { CommonModule } from '@angular/common';
 import { CategoryModel } from 'projects/admin/src/app/models/category.model';
 import {
   AngularEditorConfig,
   AngularEditorModule,
 } from '@kolkov/angular-editor';
+import { MediaModel } from '../../models/media.model';
 
 @Component({
   selector: 'app-news-form',
@@ -41,6 +43,7 @@ import {
 export class NewsFormComponent implements OnInit {
   addNewsForm: FormGroup;
   newsCategories: CategoryModel[] = [];
+  mediaImages: MediaModel[] = [];
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -84,6 +87,7 @@ export class NewsFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private newsService: NewsService,
+    private mediaService: MediaService,
     private categoryService: CategoryService,
     private snackBar: MatSnackBar
   ) {
@@ -100,6 +104,18 @@ export class NewsFormComponent implements OnInit {
     this.categoryService.getCategories().subscribe((data) => {
       this.newsCategories = data;
     });
+  }
+
+  handleLoadMedia() {
+    this.mediaService.loadAllMedia().subscribe((data) => {
+      this.mediaImages = data;
+    });
+  }
+
+  handleOpenedChange(e: boolean) {
+    if (e) {
+      this.handleLoadMedia();
+    }
   }
 
   handleAddNews() {
