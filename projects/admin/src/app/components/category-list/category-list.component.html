@@ -4,17 +4,9 @@
       <h2>Lista kategorii</h2>
     </header>
     <div class="list-content">
-      <mat-list-item
-        *ngFor="let category of categoryListArray"
-        style="height: 3rem"
-      >
+      <mat-list-item *ngFor="let category of categoryListArray" style="height: 3rem">
         <div class="flex items-center justify-between align-middle">
-          <div
-            *ngIf="
-              selectedCategory?._id !== category._id;
-              else editCategoryName
-            "
-          >
+          <div *ngIf="selectedCategory?._id !== category._id; else editCategoryName">
             {{ category.categoryName }}
           </div>
           <ng-template #editCategoryName>
@@ -26,10 +18,7 @@
             <button
               mat-icon-button
               (click)="handleUpdateCategory(category)"
-              *ngIf="
-                selectedCategory?._id !== category._id;
-                else editCategoryNameButton
-              "
+              *ngIf="selectedCategory?._id !== category._id; else editCategoryNameButton"
             >
               <mat-icon color="accent">edit</mat-icon>
             </button>
@@ -41,11 +30,7 @@
                 <mat-icon>close</mat-icon>
               </button>
             </ng-template>
-            <button
-              mat-icon-button
-              color="warn"
-              (click)="handleDeleteCategory(category._id)"
-            >
+            <button mat-icon-button color="warn" (click)="handleDeleteCategory(category._id)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -55,7 +40,7 @@
   </section>
   <section class="card">
     <header>
-      <h2>Historia</h2>
+      <h2>Statystyki</h2>
     </header>
   </section>
 </div>
