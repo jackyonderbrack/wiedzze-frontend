@@ -1,1 +1,5 @@
-<p>image-picker-dialog works!</p>
+<div class="grid grid-cols-4 gap-4">
+  <div *ngFor="let image of data" (click)="onSelectImage(image)">
+    <img [src]="image.filePath" [alt]="image.fileName" class="cursor-pointer" />
+  </div>
+</div>

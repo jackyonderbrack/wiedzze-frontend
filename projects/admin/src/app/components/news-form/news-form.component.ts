@@ -1,27 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSelectModule } from '@angular/material/select';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
+import { MatButtonModule } from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatExpansionModule } from '@angular/material/expansion'
+import { MatSelectModule } from '@angular/material/select'
 
-import { CategoryService } from 'projects/admin/src/app/services/category/category.service';
-import { NewsService } from 'projects/admin/src/app/services/news/news.service';
-import { MediaService } from '../../services/media/media.service';
-import { CommonModule } from '@angular/common';
-import { CategoryModel } from 'projects/admin/src/app/models/category.model';
-import {
-  AngularEditorConfig,
-  AngularEditorModule,
-} from '@kolkov/angular-editor';
-import { MediaModel } from '../../models/media.model';
+import { CategoryService } from 'projects/admin/src/app/services/category/category.service'
+import { NewsService } from 'projects/admin/src/app/services/news/news.service'
+import { MediaService } from '../../services/media/media.service'
+import { CommonModule } from '@angular/common'
+import { CategoryModel } from 'projects/admin/src/app/models/category.model'
+import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor'
+import { MediaModel } from '../../models/media.model'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'
+import { ImagePickerDialogComponent } from '../image-picker-dialog/image-picker-dialog.component'
 
 @Component({
   selector: 'app-news-form',
@@ -38,12 +32,13 @@ import { MediaModel } from '../../models/media.model';
     MatSelectModule,
     CommonModule,
     AngularEditorModule,
+    MatDialogModule,
   ],
 })
 export class NewsFormComponent implements OnInit {
-  addNewsForm: FormGroup;
-  newsCategories: CategoryModel[] = [];
-  mediaImages: MediaModel[] = [];
+  addNewsForm: FormGroup
+  newsCategories: CategoryModel[] = []
+  mediaImages: MediaModel[] = []
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -82,14 +77,15 @@ export class NewsFormComponent implements OnInit {
       },
     ],
     uploadUrl: 'v1/image',
-  };
+  }
 
   constructor(
     private formBuilder: FormBuilder,
     private newsService: NewsService,
     private mediaService: MediaService,
     private categoryService: CategoryService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {
     this.addNewsForm = this.formBuilder.group({
       newsCategory: ['', Validators.required],
@@ -97,25 +93,26 @@ export class NewsFormComponent implements OnInit {
       newsDescription: [''],
       newsContent: ['', [Validators.required, Validators.minLength(20)]],
       newsImageUrl: ['', Validators.required],
-    });
+    })
   }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((data) => {
-      this.newsCategories = data;
-    });
+      this.newsCategories = data
+    })
   }
 
   handleLoadMedia() {
     this.mediaService.loadAllMedia().subscribe((data) => {
-      this.mediaImages = data;
-    });
+      this.mediaImages = data
+    })
   }
 
-  handleOpenedChange(e: boolean) {
-    if (e) {
-      this.handleLoadMedia();
-    }
+  openImagePicker(): void {
+    this.dialog.open(ImagePickerDialogComponent, {
+      width: '80%',
+      data: this.mediaImages,
+    })
   }
 
   handleAddNews() {
@@ -124,16 +121,16 @@ export class NewsFormComponent implements OnInit {
         next: (response) => {
           this.snackBar.open('Dodano nowy post', 'Zamknij', {
             duration: 1500,
-          });
-          this.addNewsForm.reset();
+          })
+          this.addNewsForm.reset()
         },
         error: (error) => {
           this.snackBar.open('Nie udało się dodać newsa', 'Zamknij', {
             duration: 1500,
-          });
-          console.log('Wystąpił błąd', error);
+          })
+          console.log('Wystąpił błąd', error)
         },
-      });
+      })
     }
   }
 }
