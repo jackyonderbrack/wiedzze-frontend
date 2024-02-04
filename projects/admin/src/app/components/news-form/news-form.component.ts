@@ -109,9 +109,19 @@ export class NewsFormComponent implements OnInit {
   }
 
   openImagePicker(): void {
-    this.dialog.open(ImagePickerDialogComponent, {
+    // Otwieranie dialogu i przechowywanie referencji do otwartego dialogu.
+    const dialogRef = this.dialog.open(ImagePickerDialogComponent, {
       width: '80%',
-      data: this.mediaImages,
+      data: this.mediaImages, // Upewnij się, że przekazujesz dane w oczekiwanym formacie.
+    })
+
+    // Wywołanie afterClosed() na referencji dialogu, a nie na MatDialog.
+    dialogRef.afterClosed().subscribe((selectedImage) => {
+      if (selectedImage) {
+        // Poprawne użycie metody setValue na FormControl.
+        this.addNewsForm.get('newsImageUrl')?.setValue(selectedImage.filePath)
+        // Zakładając, że 'filePath' jest odpowiednim polem wybranego obrazu.
+      }
     })
   }
 

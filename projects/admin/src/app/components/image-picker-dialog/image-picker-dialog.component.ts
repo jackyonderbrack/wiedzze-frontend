@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { MediaModel } from '../../models/media.model'
+import { MediaListComponent } from '../media-list/media-list.component'
 
 @Component({
   selector: 'app-image-picker-dialog',

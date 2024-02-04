@@ -1,5 +1,16 @@
-<div class="grid grid-cols-4 gap-4">
-  <div *ngFor="let image of data" (click)="onSelectImage(image)">
-    <img [src]="image.filePath" [alt]="image.fileName" class="cursor-pointer" />
+<section class="p-4 bg-slate-700 text-white">
+  <div class="mb-4 flex flex-col gap-1">
+    <span class="text-lg">Galeria obrazów</span>
+    <span>Wybierz główny obrazek twojego posta</span>
   </div>
-</div>
+
+  <div class="grid lg:grid-cols-8 md:grid-cols-6 sm:grid-cols-4 gap-4 max-h-[500px] overflow-x-visible">
+    <div
+      *ngFor="let image of data"
+      (click)="onSelectImage(image)"
+      class="border border-slate-300 p-2 rounded-sm hover:bg-slate-200 transition-all"
+    >
+      <img [src]="image.filePath" [alt]="image.fileName" class="cursor-pointer" />
+    </div>
+  </div>
+</section>
