@@ -7,17 +7,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
 import { HeaderComponent } from './components/header/header.component'
 import { FooterComponent } from './components/footer/footer.component'
-import { DashboardPageRoutingModule } from './pages/dashboard-page/dashboard-page-routing.module'
+import { CommonModule } from '@angular/common'
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    CommonModule,
     HttpClientModule,
     HeaderComponent,
     FooterComponent,
-    DashboardPageRoutingModule,
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
