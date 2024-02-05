@@ -1,15 +1,17 @@
-<div class="flex flex-col items-center">
+<section class="card">
+  <div class="flex flex-col items-center">
     <h2>Formularz logowania</h2>
     <p>Zaloguj się danymi administratora</p>
     <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="flex flex-col items-center">
-        <mat-form-field>
-            <mat-label>Nazwa użytkownika</mat-label>
-            <input matInput formControlName="userLogin" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Hasło</mat-label>
-            <input matInput formControlName="userPassword" />
-        </mat-form-field>
-        <button mat-raised-button type="submit" color="warn">Zaloguj się</button>
+      <mat-form-field>
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput formControlName="userLogin" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Hasło</mat-label>
+        <input matInput formControlName="userPassword" />
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="warn">Zaloguj się</button>
     </form>
-</div>
+  </div>
+</section>

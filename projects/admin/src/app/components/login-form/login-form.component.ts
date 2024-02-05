@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
+import { AccountComponent } from '../account/account.component'
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button'
   styleUrls: ['./login-form.component.scss'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatSnackBarModule, MatInputModule],
+  providers: [AccountComponent],
 })
 export class LoginFormComponent {
   loginForm: FormGroup
@@ -22,12 +24,17 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private account: AccountComponent
   ) {
     this.loginForm = this.formBuilder.group({
       userLogin: ['', Validators.required],
       userPassword: ['', Validators.required],
     })
+  }
+
+  ngOnInit(): void {
+    this.handleLogin()
   }
 
   handleLogin() {
@@ -43,6 +50,7 @@ export class LoginFormComponent {
             .open('Zalogowano pomyślnie', 'Zamknij', { duration: 1500 })
             .afterDismissed()
             .subscribe(() => {
+              this.account.getCurrentUser()
               // Przekieruj na stronę główną/dashboard po zamknięciu snackBar
               this.router.navigate(['/dashboard'])
             })

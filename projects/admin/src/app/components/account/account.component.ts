@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { HttpHeaders } from '@angular/common/http'
 import { AccountService } from '../../services/account/account.service'
 import { MatIconModule } from '@angular/material/icon'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-account',
@@ -35,10 +36,12 @@ export class AccountComponent {
         },
         error: (error) => {
           console.error(error)
+          this.authService.logout()
         },
       })
     } else {
       console.log('Brak dostępnego tokena')
+      this.authService.logout()
     }
   }
 }

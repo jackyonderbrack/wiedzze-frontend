@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { LoginModel } from '../../models/login.model'
-import { Observable, tap } from 'rxjs'
+import { Observable, filter, tap } from 'rxjs'
+import { NavigationEnd, Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AuthenticationService {
   private apiUrl = 'http://localhost:8080/auth/login'
   private tokenKey = 'jwt_token'
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   saveToken(token: string): void {
     localStorage.setItem(this.tokenKey, token)
@@ -35,6 +36,6 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey)
-    console.log(this.tokenKey)
+    this.router.navigate(['/login'])
   }
 }
