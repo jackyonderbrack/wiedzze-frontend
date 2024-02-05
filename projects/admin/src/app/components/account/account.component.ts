@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common'
 import { AuthenticationService } from '../../services/authentication/authentication.service'
 import { HttpHeaders } from '@angular/common/http'
 import { AccountService } from '../../services/account/account.service'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent {
+  currentUserData: any = []
+
   constructor(private authService: AuthenticationService, private accountService: AccountService) {}
 
   ngOnInit() {
@@ -19,7 +22,7 @@ export class AccountComponent {
   }
 
   getCurrentUser() {
-    const token = this.authService.getToken() // Pobierz token bezpośrednio z authService
+    const token = this.authService.getToken()
     if (token) {
       const httpOptions = {
         headers: new HttpHeaders({
@@ -27,11 +30,11 @@ export class AccountComponent {
         }),
       }
       this.accountService.getCurrentUser(httpOptions).subscribe({
-        next: (user) => {
-          console.log(user) // Tutaj obsłuż dane użytkownika
+        next: (data) => {
+          this.currentUserData = data
         },
         error: (error) => {
-          console.error(error) // Obsługa błędów
+          console.error(error)
         },
       })
     } else {
