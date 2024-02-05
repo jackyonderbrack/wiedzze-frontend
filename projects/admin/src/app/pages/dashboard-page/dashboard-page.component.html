@@ -1,7 +1,5 @@
 <div class="flex">
-  <section
-    class="w-1/5 border border-slate-700 mt-[-1px] border-l-0 rounded-br-lg mr-1"
-  >
+  <section class="w-[200px] border border-slate-700 mt-[-1px] border-l-0 rounded-br-lg mr-1">
     <ul class="flex flex-col">
       <li
         *ngFor="let item of menuItems"
@@ -21,7 +19,7 @@
       </ul>
     </div>
   </section>
-  <main class="w-4/5 p-4 rounded-lg mx-1 my-2 min-h-[80dvh]">
+  <main class="w-full p-4 rounded-lg mx-1 my-2 min-h-[80dvh]">
     <router-outlet></router-outlet>
   </main>
 </div>

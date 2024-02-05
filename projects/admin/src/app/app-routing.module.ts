@@ -9,7 +9,7 @@ import { CategoryPageComponent } from './pages/category-page/category-page.compo
 import { MediaPageComponent } from './pages/media-page/media-page.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'configuration', component: ConfigurationPageComponent },
   { path: 'login', component: LoginPageComponent },
   {
