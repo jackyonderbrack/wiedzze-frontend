@@ -1,0 +1,20 @@
+<section class="w-[200px] border border-slate-700 mt-[-1px] border-l-0 rounded-br-lg mr-1 h-full">
+  <ul class="flex flex-col">
+    <li
+      *ngFor="let item of menuItems"
+      [routerLink]="item.link"
+      class="text-white hover:bg-main hover:cursor-pointer p-4 items-center transition-all justify-center"
+    >
+      <a>{{ item.title }}</a>
+    </li>
+  </ul>
+  <div class="mt-10">
+    <ul>
+      <li
+        class="text-white hover:bg-slate-400 hover:cursor-pointer hover:text-slate-800 p-4 items-center transition-all justify-center"
+      >
+        <a (click)="handleLogout()"> Wyloguj się </a>
+      </li>
+    </ul>
+  </div>
+</section>

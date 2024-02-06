@@ -7,9 +7,13 @@ import { AuthGuard } from './guards/auth.guard'
 import { NewsPageComponent } from './pages/news-page/news-page.component'
 import { CategoryPageComponent } from './pages/category-page/category-page.component'
 import { MediaPageComponent } from './pages/media-page/media-page.component'
+import { ThemesPageComponent } from './pages/themes-page/themes-page/themes-page.component'
+import { TemplatesPageComponent } from './pages/templates-page/templates-page/templates-page.component'
+import { AppearancePageComponent } from './pages/appearance-page/appearance-page/appearance-page.component'
+import { SettingsPageComponent } from './pages/settings-page/settings-page/settings-page.component'
+import { AccountPageComponent } from './pages/account-page/account-page/account-page.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'configuration', component: ConfigurationPageComponent },
   { path: 'login', component: LoginPageComponent },
   {
@@ -17,9 +21,15 @@ const routes: Routes = [
     component: DashboardPageComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'news', pathMatch: 'full' },
       { path: 'news', component: NewsPageComponent },
       { path: 'categories', component: CategoryPageComponent },
       { path: 'media', component: MediaPageComponent },
+      { path: 'themes', component: ThemesPageComponent },
+      { path: 'templates', component: TemplatesPageComponent },
+      { path: 'appearance', component: AppearancePageComponent },
+      { path: 'account', component: AccountPageComponent },
+      { path: 'settings', component: SettingsPageComponent },
     ],
   },
 ]
