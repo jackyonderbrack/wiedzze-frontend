@@ -77,6 +77,7 @@ export class NewsFormComponent implements OnInit {
       },
     ],
     uploadUrl: 'v1/image',
+    rawPaste: true,
   }
 
   constructor(
