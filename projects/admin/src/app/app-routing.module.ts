@@ -16,11 +16,13 @@ import { AccountPageComponent } from './pages/account-page/account-page/account-
 const routes: Routes = [
   { path: 'configuration', component: ConfigurationPageComponent },
   { path: 'login', component: LoginPageComponent },
+  { path: '**', redirectTo: 'dashboard/news', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashboardPageComponent,
     canActivate: [AuthGuard],
     children: [
+      
       { path: '', redirectTo: 'news', pathMatch: 'full' },
       { path: 'news', component: NewsPageComponent },
       { path: 'categories', component: CategoryPageComponent },
